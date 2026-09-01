@@ -1,9 +1,10 @@
 # Exercise: Sorting and Debugging Live
 
-This project is a mini TODO List that **works**, but it's built with every
-"anti-pattern" covered in the React best-practices lesson: a messy folder,
-names that say nothing, and three bugs on purpose. The exercise has three
-parts, in the same order as the live demo.
+This project is a mini TODO List that **works**, but it was built breaking
+every rule from the React best-practices lesson on the way: a messy folder,
+names that say nothing, and a few bugs hiding in the console. Your job is to
+leave it clean, well-named, and error-free — without changing what it does
+for the user.
 
 ## Getting started
 
@@ -12,15 +13,15 @@ npm install
 npm run dev
 ```
 
-Open the URL printed in the terminal and **open the browser console too**
-(F12, or right click → Inspect → Console). You'll see errors as soon as it
-loads: that's expected, it's part of the exercise.
+Open the URL printed in the terminal, and open the browser console too (F12,
+or right click → Inspect → Console). Something will look wrong right away.
+That's expected.
 
 ## Part 1 — Organize the folder
 
-All of `src/` is a mess: components, hooks, and context are loose, mixed in
-with `App.jsx` and `main.jsx`. Create this structure and move each file where
-it belongs:
+Right now everything lives loose inside `src/`. Look at what each file
+actually does — is it a component, a custom hook, or context? — and organize
+`src/` into folders that make that obvious:
 
 ```
 src/
@@ -31,55 +32,37 @@ src/
   main.jsx
 ```
 
-After moving the files, update the `import`s (in `App.jsx` and between the
-moved files) so the project keeps running without compile errors.
+Move each file where it belongs and fix whatever breaks as a result.
 
 ## Part 2 — Rename
 
-With the files already in place, fix the names following the conventions
-from the lesson (PascalCase for components, descriptive camelCase for
-functions and variables, hooks that start with `use`):
+Go file by file and ask yourself: *if someone who has never seen this code
+read only the name, would they understand what it does?* Wherever the answer
+is no — a component, a function, a variable, a prop, a file name — rename it.
+Nothing here is off-limits: some names are just weak, others actively lie
+about what they do.
 
-- `Component1.jsx` → a name that says what it is (it's a task item). Inside
-  it, also rename the `f()` function, the `x` variable, and the `a` prop.
-- `hookThings.js` → should start with `use` and say what it manages. Same for
-  its inner names (`data`, `f2`, `function2`).
-- `hook2.js` and its `otherThing` function → they count completed tasks, the
-  name should reflect that.
-- `MyContext.jsx`, `Context1`, `Provider1`, `getData` → none of these names
-  say which context this is. Pick names that do.
-- `StuffList.jsx` → could also use a better name.
+The behavior shouldn't change: once you're done, the app still has to add,
+toggle, and hide tasks exactly the same way it does now.
 
-The behavior doesn't need to change: once you're done, the app should still
-add, toggle, and hide tasks exactly the same way.
+## Part 3 — Hunt down and fix the bugs
 
-## Part 3 — Hunt down and fix the 3 errors
+There's more than one bug waiting in the console. Don't try to fix everything
+at once:
 
-There are three intentional bugs, marked with `BUG` comments in the code.
-You'll see them show up **one at a time**: fixing the first one reveals the
-next. For each one:
-
-1. Read the full message in the console (not just the first line).
-2. Identify the file and line the stack trace points to.
-3. Write a comment above the affected line explaining what the error said
+1. Read the **full** error message, not just the first line.
+2. Find the file and line the stack trace points to.
+3. Write a short comment above the affected line saying what the error meant
    and why it was happening.
-4. Fix it.
+4. Fix it, reload, and see what the console says now.
 
-The three errors you'll run into (in this order):
-
-- `Each child in a list should have a unique "key" prop` — a warning, it
-  doesn't break the app, but it should still be fixed.
-- `Cannot read properties of undefined (reading 'text')` — accessing an
-  array position that doesn't exist.
-- `Too many re-renders. React limits the number of renders to prevent an
-  infinite loop.` — a state-setting function is being called directly during
-  render, instead of being passed by reference or wrapped in an arrow
-  function.
+Repeat until the app runs with a completely clean console — no red, no
+yellow — while you add a task, toggle it, and show/hide completed ones.
 
 ## When it's done
 
 - `src/` is organized into `components/`, `hooks/`, `context/`.
-- No file, component, function, or variable has a generic name (`Component1`,
-  `data`, `stuff`, `f`, `x`, `a`, etc.).
-- The console shows no errors or warnings while using the app: adding a
-  task, toggling it as completed, and showing/hiding completed ones.
+- No file, component, function, or variable has a name that could belong to
+  any project (`Component1`, `data`, `stuff`, `f`, `x`, `a`, and friends are
+  all gone).
+- The console is silent, in every state of the app.
