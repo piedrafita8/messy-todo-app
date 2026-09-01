@@ -1,0 +1,32 @@
+body {
+  font-family: system-ui, sans-serif;
+  max-width: 480px;
+  margin: 40px auto;
+  color: #222;
+}
+
+form {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+input {
+  flex: 1;
+  padding: 6px 8px;
+}
+
+li {
+  cursor: pointer;
+  padding: 4px 0;
+}
+
+.completed {
+  text-decoration: line-through;
+  color: #888;
+}
+
+.summary {
+  font-size: 0.9em;
+  color: #555;
+}
